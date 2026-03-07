@@ -1,17 +1,17 @@
-Allows players to place decals at runtime. 
+# Allows players to place decals at runtime. 
 
-Installation instructions:
-Close game if running. 
-Unzip and copy contents of mod Onirism folder into the game installation's Onirism folder.
-	If prompted, select yes to overwrite existing files. 
-Place images you'd like to use as sprays in the Onirism/Sprays directory.
-Launch the game.
+# Installation instructions:
+1. Close game if running. 
+2. Unzip and copy contents of mod Onirism folder into the game installation's Onirism folder.
+	- If prompted, select yes to overwrite existing files. 
+3. Place images you'd like to use as sprays in the Onirism/Sprays directory.
+4. Launch the game.
 
-Usage instructions:
-Press T to begin posing a spray. 
-Press Left Alt to cycle between images. 
-Press T again to place the spray at it's current position. 
-Spray positions are saved when leaving the level. 
+# Usage instructions:
+1. Press T to begin posing a spray. 
+2. Press Left Alt to cycle between images. 
+3. Press T again to place the spray at it's current position. 
+4. Spray positions are saved when leaving the level. 
 
-Settings:
-Keybinds can be configured via the Onirism/BepInEx/config/OnirismSpraypaint.cfg. 
+# Settings:
+- Keybinds can be configured via the Onirism/BepInEx/config/OnirismSpraypaint.cfg. 
