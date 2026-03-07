@@ -26,7 +26,7 @@ public class SpraypaintPlugin : BaseUnityPlugin
         new Log(base.Logger);
         Log.Info($"Starting {MyPluginInfo.PLUGIN_GUID}...");
         SceneManager.sceneLoaded += HandleSceneLoaded;
-        Log.Debug("Setting up decal parent");
+        Log.Debug("Setting up decal parent...");
         DecalFolder.name = "Placed Decals";
         DecalFolder.parent = this.transform;
         //do we need to ensure the position and rotation are zereod out?
@@ -35,6 +35,7 @@ public class SpraypaintPlugin : BaseUnityPlugin
         CycleCfg = this.Config.Bind("Keybinds", "Cycle Key", defaultCycle, "Key used to cycle through available sprays.");
         Log.Debug("Loading user files...");
         SprayLoader.LoadImages();
+        SprayLoader.PlaceSaved();
         Log.Info($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 

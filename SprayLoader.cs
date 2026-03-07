@@ -44,24 +44,25 @@ public class SprayLoader
         LoadedSprays.Clear();
         Directory.CreateDirectory(SprayDirectory);
         Log.Debug("Loading materials...");
-        var files = Directory.EnumerateFiles(SprayDirectory);
-        files
+        Directory.EnumerateFiles(SprayDirectory)
             .Where(path => path.EndsWith(".png") || path.EndsWith(".jpg"))
             .Select(path => (filename: Path.GetFileNameWithoutExtension(path), mat: FileToMaterial(path)))
             .ToList()
             .ForEach(tup => LoadedSprays.Add(tup.filename, tup.mat));
+        Cycle();
+    }
+
+    public static void PlaceSaved()
+    {
         Log.Debug("Loading spray position data...");
-        files
+        Directory.EnumerateFiles(SprayDirectory)
             .Where(path => path.EndsWith(".json"))
             .Select(FileToMetadata)
             .SelectMany(list => list)
             .ToList()
             .ForEach(LoadSaved);
         Log.Info($"Loaded {LoadedSprays.Count} sprays");
-        Cycle();
     }
-
-
 
     /// <summary>
     /// Stores all placed decals as .json files. Overwrites existing files. 

@@ -8,9 +8,11 @@ public class DecalInstance : MonoBehaviour
     static readonly Vector3 offset = new(0, 1, 1.5f);
     static readonly Vector3 rotation = new(270, 0, 0);
 
+    public bool Placed { get; private set; } = false;
     public string? Scene { get; private set; }
     public string? Filename { get; private set; }
     EasyDecal? Decal;
+    
 
     /// <summary>
     /// Factory method that creates a new gameobject with a decal.
@@ -34,8 +36,10 @@ public class DecalInstance : MonoBehaviour
     void HandleSceneChange(Scene scene, LoadSceneMode mode) 
     {
         Log.Debug($"DecalInstance.{this.Filename}.HandleSceneChange({scene.name}, {mode}");
-        this.gameObject.SetActive(scene.name == this.Scene);
+        bool active = scene.name == this.Scene;
+        this.gameObject.SetActive(active); 
         Log.Debug($"Decal state set to {this.gameObject.activeSelf}.");
+        if (active && this.Placed && this.Decal) { this.Decal.LateBake(3); }
     }
 
     /// <summary>
@@ -91,9 +95,7 @@ public class DecalInstance : MonoBehaviour
             this.Scene = position.scene;
             position.ApplyToTransform(this.transform);
         }
-        
-        this.Decal.LateBake();
-        Log.Debug(this.Decal.Baked ? "baked" : "not baked");
+        this.Placed = true;
         HandleSceneChange(SceneManager.GetActiveScene(), 0);
         Log.Debug("DecalInstance.Place() completed.");
     }
